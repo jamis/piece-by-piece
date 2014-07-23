@@ -1,0 +1,15 @@
+<li class="assertion">
+  <h2><%= @persona.get 'label' %></h2>
+  <% for date, list of @characteristicsByDate @persona: %>
+    <h3><%= @characteristicDate date %></h3>
+    <ol>
+      <% for item in list: %>
+        <li class="<%= item.get 'trust' %>">
+          <%= @characteristicLabel item %>:
+          <a href="" data-item-cid=""><%= item.compositeValue() %></a>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+  <p class="actions"><a href="#" data-behavior="add-fact" data-collection="personas" data-cid="<%= @persona.cid %>">Add another fact</a></p>
+</li>

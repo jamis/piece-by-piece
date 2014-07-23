@@ -1,0 +1,35 @@
+table.new_repository {
+  width: 100%;
+
+  th {
+    text-align: right;
+    vertical-align: top;
+    padding-right: 2pt;
+    font-size: 14pt;
+    line-height: 26pt;
+  }
+
+  td {
+    input, textarea {
+      font-size: 14pt;
+      width: 95%;
+      padding: 3px;
+    }
+
+    aside {
+      font-size: 11pt;
+      color: #999;
+      margin-left: 6pt;
+    }
+  }
+}
+
+.selection {
+  font-size: 14pt;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 3pt 6pt;
+  margin-top: 2pt;
+  margin-bottom: 5pt;
+  background: #eee;
+}

@@ -1,0 +1,41 @@
+ol.menu {
+  position: absolute;
+  list-style-type: none;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  boxshadow: 4px 0 4px #777;
+  z-index: 3001;
+
+  li {
+    &.item {
+      padding: 3px 5px;
+      font-size: 13px;
+      cursor: pointer;
+
+      &:hover {
+        background: #ffc;
+      }
+    }
+
+    &.selected {
+      background: #ffa;
+      border-top: 1px solid #ee9;
+      border-bottom: 1px solid #ee9;
+    }
+
+    &.separator {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}
+
+.menu-screen {
+  position: fixed;
+  width: 2000px;
+  height: 2000px;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: 3000;
+}

@@ -1,0 +1,110 @@
+table.new_source {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  th {
+    text-align: right;
+    vertical-align: top;
+    padding-right: 6pt;
+    line-height: 24pt;
+    font-size: 14pt;
+    white-space: nowrap;
+    width: 1%;
+
+    select {
+      max-width: 150px;
+    }
+  }
+
+  td {
+    white-space: nowrap;
+    font-size: 14pt;
+
+    > * {
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    input[type=text], textarea {
+      font-size: 14pt;
+      width: 95%;
+      padding: 2pt 4pt;
+    }
+  }
+}
+
+.use-source {
+  &.pending {
+    .info {
+      display: none;
+    }
+  }
+
+  &.decided {
+    .source .actions {
+      display: none;
+    }
+  }
+
+  .options {
+    margin-left: 35px;
+
+    .option {
+      float: left;
+      width: 200px;
+      height: 140px;
+      border: 2px solid #dd9;
+      border-radius: 20px;
+      box-shadow: 2px 2px 0px #cc8;
+      margin: 7px;
+      padding: 12px;
+      background: #ffc;
+      display: block;
+      text-align: left;
+      text-decoration: none;
+      color: black;
+
+      &:hover {
+        background: #ffa;
+        border-color: #bb7;
+
+        h1 {
+          background: #ee9;
+          border-color: #dd8;
+        }
+      }
+
+      &:active {
+        position: relative;
+        left: 2px;
+        top: 2px;
+        box-shadow: none;
+      }
+
+      p {
+        text-align: center;
+        color: black;
+      }
+
+      h1 {
+        background: #eeb;
+        font-size: 14pt;
+        font-weight: bold;
+        border-top: 1px solid #dd9;
+        border-bottom: 1px solid #dd9;
+        color: black;
+        text-align: center;
+        padding: 4px 0 2px 0;
+        margin: 4pt -12px 6pt -12px;
+      }
+    }
+  }
+
+  .disjunction {
+    float: left;
+    margin: 40px 7px 0 7px;
+    padding: 12px 0px;
+    color: #999;
+  }
+}

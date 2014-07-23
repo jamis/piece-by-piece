@@ -1,0 +1,48 @@
+<h1>What do you know about this person's name?</h1>
+<ol class="tabs">
+  <li class="name selected" data-panel="name"><label>If you know their name&hellip;</label></li
+  ><li class="label" data-panel="label"><label>If you don't know their name&hellip;</label></li>
+</ol>
+<div class="content">
+  <section class="panel name selected">
+    <table>
+      <tr>
+        <th>Name:</th>
+        <td><input type="text" class="name autofocus" />
+            <aside>Record the name exactly as given by your source.</aside></td>
+      </tr>
+      <tr class="parts-row">
+        <td></td>
+        <td class="parts"></td>
+      </tr>
+      <tr>
+        <th>Date:</th>
+        <td><input type="text" class="date" />
+            <aside>When was this person known by this name?</aside></td>
+      </tr>
+      <tr>
+        <th>Place:</th>
+        <td><input type="text" class="place" />
+            <aside>Where was this person known by this name?</aside></td>
+      </tr>
+      <tr>
+        <th>Trust:</th>
+        <td><%- JST["templates/trust"](this) %>
+            <aside>How sure are you that this was reliably recorded?</aside></td>
+      </tr>
+    </table>
+  </section>
+  <section class="panel label">
+    <table>
+      <tr>
+        <th>Label:</th>
+        <td><input type="text" class="label autofocus" />
+            <aside>How would you like to refer to this person?</aside></td>
+      </tr>
+    </table>
+  </section>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><a href="#">OK</a> &rarr;</span>
+  </div>
+</div>

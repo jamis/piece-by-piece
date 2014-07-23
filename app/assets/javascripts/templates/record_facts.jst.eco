@@ -1,0 +1,51 @@
+<h1>Record the facts you gleaned from this source:</h1>
+<div class="content">
+  <section class="personas selected">
+    <p><button data-behavior="add-person" class="add" type="button"><span>Add a person</span></button></p>
+    <div class="blank">
+      <p>Be sure to include even implied persons; on a census, for instance, a person
+      will be named explicitly, but their parents may be suggested only by their
+      birthplaces.</p>
+    </div>
+    <div class="summary">
+      Named or unnamed, people are people. <a href="#">Learn more about people.</a>
+    </div>
+    <ol class="data">
+    </ol>
+  </section>
+  <section class="events">
+    <p><button data-behavior="add-event" class="add" type="button"><span>Add an event</span></button></p>
+    <div class="blank">
+      <p><em>Events</em> occur on a specific date, and at a specific place.</p>
+      <p>Include even implied events; for instance, if a person is mentioned in the
+      document, you can deduce a birth date sometime prior to when they were mentioned.</p>
+    </div>
+    <div class="summary">
+      Births, deaths, marriages, baptisms, etc. <a href="#">Learn more about events.</a>
+    </div>
+    <ol class="data">
+    </ol>
+  </section>
+  <section class="groups">
+    <p><button data-behavior="add-group" class="add" type="button"><span>Add a group</span></button></p>
+    <div class="blank">
+      <p>Groups are collections of things.</p>
+      <p>They may be collections of people, such as families, households, military
+      organizations, clubs, graduating classes, companies, sports teams, and so forth.</p>
+      <p>They can also be collections of events, like known sightings of a given
+      individual, or groups of related battles.</p>
+      <p>They can even be collections of other groups, such as units involved with a
+      particular military exercise, or chapters of a given organization.</p>
+    </div>
+    <div class="summary">
+      Families, military units, clubs, companies, etc. <a href="#">Learn more about groups.</a>
+    </div>
+    <ol class="data">
+    </ol>
+  </section>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><a data-behavior="next" href="#">next</a> &rarr;</span>
+  </div>
+  <div class="clear"></div>
+</div>

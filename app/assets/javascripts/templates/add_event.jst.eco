@@ -1,0 +1,48 @@
+<h1>What do you know about this event?</h1>
+<div class="content">
+  <table>
+    <tr>
+      <th>Type:</th>
+      <td>
+        <select class="type autofocus">
+          <option value="-">Choose one...</option>
+          <option value="-">&mdash;</option>
+          <option>Baptism</option>
+          <option>Birth</option>
+          <option>Burial</option>
+          <option>Christening</option>
+          <option>Death</option>
+          <option>Divorce</option>
+          <option>Marriage</option>
+          <option value="-">&mdash;</option>
+          <option value="+">Add a new type...</option>
+        </select>
+        <aside>The type of the event will determine the roles of the participants.</aside>
+      </td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td><input type="text" class="name" />
+          <aside>What will you call this event?</aside></td>
+    </tr>
+    <tr>
+      <th>Date:</th>
+      <td><input type="text" class="date" />
+          <aside>When did this event occur?</aside></td>
+    </tr>
+    <tr>
+      <th>Place:</th>
+      <td><input type="text" class="place" />
+          <aside>Where did this event occur?</aside></td>
+    </tr>
+    <tr>
+      <th>Trust:</th>
+      <td><%- JST["templates/trust"](this) %>
+          <aside>How sure are you that this was reliably recorded?</aside></td>
+    </tr>
+  </table>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><a href="#">OK</a> &rarr;</span>
+  </div>
+</div>

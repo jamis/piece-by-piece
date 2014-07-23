@@ -1,0 +1,56 @@
+<h1>What fact would you like to add?</h1>
+<div class="content">
+  <table>
+    <tr>
+      <th>Type:</th>
+      <td>
+        <select class="autofocus characteristic">
+          <option value="-">Select one...</option>
+          <option value="-">&mdash;</option>
+          <option>Age</option>
+          <option>Build</option>
+          <option>Eye color</option>
+          <option>Gender</option>
+          <option>Hair color</option>
+          <option>Height</option>
+          <option>Marital status</option>
+          <option>Name</option>
+          <option>Occupation</option>
+          <option>Race</option>
+          <option>Weight</option>
+          <option value="-">&mdash;</option>
+          <option value="+">Add another attribute...</option>
+        </select>
+        <aside>Select the kind of fact that you want to add.</aside>
+      </td>
+    </tr>
+    <tr>
+      <th>Value:</th>
+      <td><input type="text" class="value" />
+          <aside>Record the value exactly as given by your source.</aside></td>
+    </tr>
+    <tr class="parts-row">
+      <td></td>
+      <td class="parts"></td>
+    </tr>
+    <tr>
+      <th>Date:</th>
+      <td><input type="text" class="date" />
+          <aside>When was this person known to have this attribute?</aside></td>
+    </tr>
+    <tr>
+      <th>Place:</th>
+      <td><input type="text" class="place" />
+          <aside>Where was this person known to have this attribute?</aside></td>
+    </tr>
+    <tr>
+      <th>Trust:</th>
+      <td><%- JST["templates/trust"](this) %>
+          <aside>How sure are you that this was reliably recorded?</aside></td>
+    </tr>
+  </table>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><a href="#">OK</a> &rarr;</span>
+  </div>
+</div>

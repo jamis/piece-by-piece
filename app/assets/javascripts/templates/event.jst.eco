@@ -1,0 +1,8 @@
+<li class="assertion">
+  <h2><%= @event.get 'name' %></h2>
+  <ol>
+    <li class="<%= @event.get 'trust' %>"> When: <a href=""><%= @event.get 'date' %></a></li>
+    <li class="<%= @event.get 'trust' %>"> Where: <a href=""><%= @event.get 'place' %></a></li>
+  </ol>
+  <p class="actions"><a href="#" data-behavior="add-participant" data-collection="events" data-cid="<%= @event.cid %>">Add participants</a></p>
+</li>
