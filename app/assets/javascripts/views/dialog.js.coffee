@@ -2,12 +2,36 @@ class App.Views.Dialog extends Backbone.View
   tagName: "section"
   className: "dialog"
 
+  initialize: (options) ->
+    options ?= {}
+    super(options)
+    @parent = options.parent
+
+  depth: ->
+    node = this
+    depth = 1
+
+    while node.parent?
+      depth += 1
+      node = node.parent
+
+    depth
+
   render: ->
+    depth = @depth()
+
     $(@el).html JST["templates/#{@template}"](this)
-    $(@el).addClass "closed"
+    $(@el).addClass "closed l#{depth}"
     @screen = $(document.createElement "div")
-    @screen.addClass "dialog-screen closed"
+    @screen.addClass "dialog-screen closed l#{depth}"
     this
+
+  onKeyPress: (event) ->
+    if (event.which == 13)
+      @onEnterPressed(event)
+
+  onEnterPressed: (event) ->
+    # nothing
 
   cancel: (event) ->
     event.preventDefault()

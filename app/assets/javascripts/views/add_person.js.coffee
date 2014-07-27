@@ -9,13 +9,24 @@ class App.Views.AddPerson extends App.Views.Dialog
     'menu:click'       : 'menuCommand'
     'click .trust'     : 'changeTrust'
     'change input.name': 'parseName'
+    'keypress'         : 'onKeyPress'
+
+  initialize: (options) ->
+    super(options)
+
+    @date = options.date
+    @place = options.place
 
   render: ->
     super
-    $(@el).addClass "l2 add-person data-entry"
-    $(@screen).addClass "l2"
+    $(@el).addClass "add-person data-entry"
     @currentTab = "name"
+
+    @$('input.place').val @place
+    @$('input.date').val @date
     this
+
+  onEnterPressed: (event) -> @next(event)
 
   next: (event) ->
     event.preventDefault()

@@ -8,6 +8,7 @@
           <option value="-">Select one...</option>
           <option value="-">&mdash;</option>
           <option>Age</option>
+          <option>Birth Place</option>
           <option>Build</option>
           <option>Eye color</option>
           <option>Gender</option>
@@ -17,6 +18,7 @@
           <option>Name</option>
           <option>Occupation</option>
           <option>Race</option>
+          <option>Value of Personal Estate</option>
           <option>Weight</option>
           <option value="-">&mdash;</option>
           <option value="+">Add another attribute...</option>

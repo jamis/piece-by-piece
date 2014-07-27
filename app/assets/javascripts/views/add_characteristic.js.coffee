@@ -9,31 +9,39 @@ class App.Views.AddCharacteristic extends App.Views.Dialog
     'click .trust'     : 'changeTrust'
     'change input.name': 'parseName'
     'change select'    : 'changeCharacteristicType'
+    'keypress'         : 'onKeyPress'
 
   initialize: (options) ->
+    super(options)
+
     @persona = options.persona
+    @date = options.date
+    @place = options.place
 
   render: ->
     super
-    $(@el).addClass "l2 add-characteristic data-entry"
-    $(@screen).addClass "l2"
+    $(@el).addClass "add-characteristic data-entry"
+    @$('input.place').val @place
+    @$('input.date').val @date
     this
+
+  onEnterPressed: (event) -> @next(event)
 
   next: (event) ->
     event.preventDefault()
 
     if not @type?
       alert "Please choose which kind of attribute you are recording."
-      $('select').focus()
+      @$('select').focus()
       return
 
-    if /^\s*$/.test $('.value').val()
+    if /^\s*$/.test @$('.value').val()
       alert "Please describe the attribute you are recording."
-      $('.value').focus()
+      @$('.value').focus()
       return
 
-    characteristic = new App.Models.Characteristic type: @type, place: $('input.place').val(), date: $('input.date').val(), trust: @trust
-    characteristic.parts = if @name? then @name.parts else [ content: $('.value').val() ]
+    characteristic = new App.Models.Characteristic type: @type, place: @$('input.place').val(), date: @$('input.date').val(), trust: @trust
+    characteristic.parts = if @name? then @name.parts else [ content: @$('.value').val() ]
     @persona.addCharacteristic characteristic
 
     @hide()
@@ -49,14 +57,14 @@ class App.Views.AddCharacteristic extends App.Views.Dialog
       alert "Someday you'll be able to add another characteristic type"
     else
       if selection is "Name"
-        $('input.value').addClass "name"
+        @$('input.value').addClass "name"
       else
-        $('input.value').removeClass "name"
-        $('.parts-row').removeClass "parsing parsed"
+        @$('input.value').removeClass "name"
+        @$('.parts-row').removeClass "parsing parsed"
         @name = null
 
       @type = selection
-      $('input.value').focus()
+      @$('input.value').focus()
 
 App.include App.Views.AddCharacteristic, App.Mixins.NameParsing
 App.include App.Views.AddCharacteristic, App.Mixins.Trust

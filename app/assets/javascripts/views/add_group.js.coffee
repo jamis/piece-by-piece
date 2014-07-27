@@ -6,11 +6,20 @@ class App.Views.AddGroup extends App.Views.Dialog
     'click .next a'      : 'next'
     'click .trust'       : 'changeTrust'
     'change select.type' : 'chooseType'
+    'keypress'           : 'onKeyPress'
+
+  initialize: (options) ->
+    super(options)
+
+    @date = options.date
+    @place = options.place
 
   render: ->
     super
-    $(@el).addClass "l2 add-group data-entry"
-    $(@screen).addClass "l2"
+    $(@el).addClass "add-group data-entry"
+
+    @$('input.place').val @place
+    @$('input.date').val @date
     this
 
   chooseType: (event) ->
@@ -23,28 +32,30 @@ class App.Views.AddGroup extends App.Views.Dialog
       select.selectedIndex = 0
       alert "Someday you'll be able to add different group types!"
     else
-      if /^\s*$/.test $('input.name').val()
-        $('input.name')[0].value = "#{selection}: "
-      $('input.name').focus()
+      if /^\s*$/.test @$('input.name').val()
+        @$('input.name')[0].value = "#{selection}: "
+      @$('input.name').focus()
+
+  onEnterPressed: (event) -> @next(event)
 
   next: (event) ->
     event.preventDefault()
 
-    type = $('select.type').val()
+    type = @$('select.type').val()
 
     if type is "-" or type is "+"
       alert "Please choose the type of this group."
-      $('select.type').focus()
+      @$('select.type').focus()
       return
 
-    name = $('input.name').val()
+    name = @$('input.name').val()
     if /^\s*$/.test name
       alert "Please enter a name for this group."
-      $('input.name').focus()
+      @$('input.name').focus()
       return
 
-    date = $('input.date').val()
-    place = $('input.place').val()
+    date = @$('input.date').val()
+    place = @$('input.place').val()
 
     group = new App.Models.Group type: type, name: name, date: date, place: place, trust: @trust
     @collection.add group

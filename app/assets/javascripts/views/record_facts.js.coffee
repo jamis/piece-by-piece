@@ -7,7 +7,9 @@ class App.Views.RecordFacts extends App.Views.Dialog
     'click button.add'                 : 'addAssertion'
     'click [data-behavior~=add-fact]'  : 'addFact'
 
-  initialize: ->
+  initialize: (options) ->
+    super(options)
+
     @_personas = new App.Collections.Personas
     @_personas.bind "add", (persona) => @addPersona persona
     @_personas.bind "change", (persona) => @changePersona persona
@@ -17,8 +19,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
     @_events.bind "change", (event) => @changeEvent event
 
     @_groups = new App.Collections.Groups
-    @_groups.bind "add", (group) => @addGroup event
-    @_groups.bind "change", (group) => @changeGroup event
+    @_groups.bind "add", (group) => @addGroup group
+    @_groups.bind "change", (group) => @changeGroup group
 
   render: ->
     super
@@ -38,7 +40,13 @@ class App.Views.RecordFacts extends App.Views.Dialog
     @addFactFor collection.get cid
 
   addFactFor: (persona) ->
-    new App.Views.AddCharacteristic(persona: persona).render().show()
+    view = new App.Views.AddCharacteristic
+      parent: this
+      persona: persona
+      date: @lastDate
+      place: @lastPlace
+
+    view.render().show()
 
   openDialog: (which) ->
     switch which
@@ -57,7 +65,11 @@ class App.Views.RecordFacts extends App.Views.Dialog
 
     return unless klass?
 
-    dialog = new klass collection: collection
+    dialog = new klass
+      collection: collection
+      date: @lastDate
+      place: @lastPlace
+
     dialog.render().show()
 
   hideBlankSlateOn: (panel) ->
@@ -66,13 +78,27 @@ class App.Views.RecordFacts extends App.Views.Dialog
   showBlankSlateOn: (panel) ->
     $(".content > .#{panel}").removeClass "active"
 
-  addPersona: (persona) -> @redrawPeople()
+  addPersona: (persona) ->
+    characteristics = persona.get('characteristics')
+    characteristic = characteristics[characteristics.length-1]
+    @lastDate = characteristic.get('date')
+    @lastPlace = characteristic.get('place')
+    @redrawPeople()
+
   changePersona: (persona) -> @redrawPeople()
 
-  addEvent: (event) -> @redrawEvents()
+  addEvent: (event) ->
+    @lastDate = event.get('date')
+    @lastPlace = event.get('place')
+    @redrawEvents()
+
   changeEvent: (event) -> @redrawEvents()
 
-  addGroup: (group) -> @redrawGroups()
+  addGroup: (group) ->
+    @lastDate = group.get('date')
+    @lastPlace = group.get('place')
+    @redrawGroups()
+
   changeGroup: (group) -> @redrawGroups()
 
   redrawPeople: -> @redrawCollection "persona", "personas"
