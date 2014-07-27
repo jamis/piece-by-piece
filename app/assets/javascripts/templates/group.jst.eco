@@ -1,8 +1,8 @@
 <li class="assertion">
   <h2><%= @group.get 'name' %></h2>
   <ol>
-    <li class="<%= @group.get 'trust' %>"> When: <a href=""><%= @group.get 'date' %></a></li>
-    <li class="<%= @group.get 'trust' %>"> Where: <a href=""><%= @group.get 'place' %></a></li>
+    <li class="<%= @group.get 'trust' %>"> When: <a href=""><%= @group.maybeUnknown 'date' %></a></li>
+    <li class="<%= @group.get 'trust' %>"> Where: <a href=""><%= @group.maybeUnknown 'place' %></a></li>
     <% for participant in @group.getParticipants(): %>
       <li class="<%= participant.get 'trust' %>"><%= participant.get 'role' %>: <a href="#"><%= participant.get('persona').get('label') %></a></li>
     <% end %>
