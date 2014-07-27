@@ -79,10 +79,13 @@ class App.Views.RecordFacts extends App.Views.Dialog
     $(".content > .#{panel}").removeClass "active"
 
   addPersona: (persona) ->
-    characteristics = persona.get('characteristics')
-    characteristic = characteristics[characteristics.length-1]
-    @lastDate = characteristic.get('date')
-    @lastPlace = characteristic.get('place')
+    characteristics = persona.get('characteristics') ? []
+
+    if characteristics.length > 0
+      characteristic = characteristics[characteristics.length-1]
+      @lastDate = characteristic.get('date')
+      @lastPlace = characteristic.get('place')
+
     @redrawPeople()
 
   changePersona: (persona) -> @redrawPeople()
