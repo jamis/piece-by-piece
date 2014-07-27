@@ -1,28 +1,18 @@
-== README
+== Piece by Piece
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Are you sick of finding preexisting research that completely fails to cite
+sources? Are you weary of combing through piles of data full of contradictions
+and impossibilities?
 
-Things you may want to cover:
+"Piece by Piece" aims to be a strongly evidence-oriented research tool. You
+*cannot* enter a single piece of data in "Piece by Piece" without also telling---in
+great detail---where it came from and how it relates to existing data.
 
-* Ruby version
+The hoary Pedigree Chart---that sacred cow of genealogical software---plays
+second fiddle, here, if it plays at all. It's just a report, one more way to view
+the data you've so meticulously researched and documented.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Maybe you'll find all this too tedious or constraining. That's fine---it won't be
+for everyone. But maybe---just maybe!---if you're ready to take your research to the
+next level, you'll find Piece by Piece will be the piece you were missing to make
+your research much more rigorous.
