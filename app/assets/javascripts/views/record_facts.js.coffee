@@ -3,9 +3,10 @@ class App.Views.RecordFacts extends App.Views.Dialog
   className: "dialog large"
 
   events:
-    'click .back a'                    : 'cancel'
-    'click button.add'                 : 'addAssertion'
-    'click [data-behavior~=add-fact]'  : 'addFact'
+    'click .back a'                           : 'cancel'
+    'click button.add'                        : 'addAssertion'
+    'click [data-behavior~=add-fact]'         : 'addFact'
+    'click [data-behavior~=add-participant]'  : 'addParticipant'
 
   initialize: (options) ->
     super(options)
@@ -45,6 +46,20 @@ class App.Views.RecordFacts extends App.Views.Dialog
       persona: persona
       date: @lastDate
       place: @lastPlace
+
+    view.render().show()
+
+  addParticipant: (evt) ->
+    evt.preventDefault()
+    source = $(evt.target).attr "data-collection"
+    collection = this["_#{source}"]
+    cid = $(evt.target).attr "data-cid"
+    klass = collection.get cid
+
+    view = new App.Views.AddParticipant
+      parent: this
+      klass: klass
+      personas: @_personas
 
     view.render().show()
 

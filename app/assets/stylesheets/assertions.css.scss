@@ -249,6 +249,30 @@
       }
     }
   }
+
+  &.brief {
+    span {
+      width: 14px;
+      font-size: 12px;
+      font-weight: bold;
+
+      &.sure {
+        &:before {
+          content: '!';
+        }
+      }
+      &.undecided {
+        &:before {
+          content: '?';
+        }
+      }
+      &.unsure {
+        &:before {
+          content: 'X';
+        }
+      }
+    }
+  }
 }
 
 .parts-row {
@@ -345,6 +369,10 @@
       font-size: 20px;
       width: 410px;
       margin-top: 5px;
+
+      &.short {
+        width: 175px;
+      }
     }
 
     th {
@@ -360,9 +388,19 @@
       padding-bottom: 5px;
     }
 
+    tr.horizontal {
+      td {
+        padding-right: 5px;
+      }
+    }
+
     input {
       padding: 3px;
       width: 400px;
+
+      &.short {
+        width: auto;
+      }
     }
 
     aside {

@@ -57,7 +57,7 @@ class App.Views.AddGroup extends App.Views.Dialog
     date = @$('input.date').val()
     place = @$('input.place').val()
 
-    group = new App.Models.Group type: type, name: name, date: date, place: place, trust: @trust
+    group = new App.Models.Group type: type, name: name, date: date, place: place, trust: @getTrust()
     @collection.add group
 
     @hide()

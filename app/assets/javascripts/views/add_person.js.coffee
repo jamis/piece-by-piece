@@ -37,7 +37,7 @@ class App.Views.AddPerson extends App.Views.Dialog
       else alert "invalid tab `#{@currentTab}'"
 
   addPersonWithName: ->
-    characteristic = new App.Models.Characteristic type: "Name", place: $('input.place').val(), date: $('input.date').val(), trust: @trust
+    characteristic = new App.Models.Characteristic type: "Name", place: $('input.place').val(), date: $('input.date').val(), trust: @getTrust()
     characteristic.parts = @name.parts
 
     persona = new App.Models.Persona label: @name.original

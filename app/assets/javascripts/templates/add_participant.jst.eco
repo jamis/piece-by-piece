@@ -1,0 +1,15 @@
+<h1>Who participated in this <%= @klass.type %>?</h1>
+<div class="content">
+  <table>
+    <tr>
+      <th>Person:</th>
+      <th>Role:</th>
+      <th>Trust:</th>
+    </tr>
+    <%- JST["templates/select_participant"](this) %>
+  </table>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><a href="#">OK</a> &rarr;</span>
+  </div>
+</div>

@@ -40,7 +40,7 @@ class App.Views.AddCharacteristic extends App.Views.Dialog
       @$('.value').focus()
       return
 
-    characteristic = new App.Models.Characteristic type: @type, place: @$('input.place').val(), date: @$('input.date').val(), trust: @trust
+    characteristic = new App.Models.Characteristic type: @type, place: @$('input.place').val(), date: @$('input.date').val(), trust: @getTrust()
     characteristic.parts = if @name? then @name.parts else [ content: @$('.value').val() ]
     @persona.addCharacteristic characteristic
 

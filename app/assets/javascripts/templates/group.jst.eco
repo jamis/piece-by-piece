@@ -3,6 +3,9 @@
   <ol>
     <li class="<%= @group.get 'trust' %>"> When: <a href=""><%= @group.get 'date' %></a></li>
     <li class="<%= @group.get 'trust' %>"> Where: <a href=""><%= @group.get 'place' %></a></li>
+    <% for participant in @group.getParticipants(): %>
+      <li class="<%= participant.get 'trust' %>"><%= participant.get 'role' %>: <a href="#"><%= participant.get('persona').get('label') %></a></li>
+    <% end %>
   </ol>
   <p class="actions"><a href="#" data-behavior="add-participant" data-collection="groups" data-cid="<%= @group.cid %>">Add participants</a></p>
 </li>

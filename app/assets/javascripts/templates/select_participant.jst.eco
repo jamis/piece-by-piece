@@ -1,0 +1,23 @@
+<tr class="participant horizontal">
+  <td>
+    <select class="persona short autofocus">
+      <option value="-">Choose one...</option>
+      <option value="-">&mdash;</option>
+      <%= @personas.each (persona) ->: %>
+        <option value="<%= persona.cid %>"><%= persona.get 'label' %></option>
+      <% end %>
+    </select>
+  </td>
+  <td>
+    <select class="role short">
+      <option value="-">Choose one...</option>
+      <option value="-">&mdash;</option>
+      <option>Self</option>
+      <option>Father</option>
+      <option>Mother</option>
+      <option value="-">&mdash;</option>
+      <option value="+">Add a new role<option>
+    </select>
+  </td>
+  <td><%- JST["templates/trust"](this) %>
+</tr>

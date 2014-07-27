@@ -46,7 +46,7 @@ class App.Views.Dialog extends Backbone.View
   _show2: ->
     $(@el).removeClass "closed"
     @screen.removeClass "closed"
-    $('.autofocus').focus()
+    @$('.autofocus').focus()
 
   isShown: ->
     !$(@el).hasClass "closed"
@@ -59,14 +59,14 @@ class App.Views.Dialog extends Backbone.View
 
   selectTab: (which) ->
     unless @currentTab is which
-      $(".tabs .#{@currentTab}").removeClass "selected"
-      $(".panel.#{@currentTab}").removeClass "selected"
+      @$(".tabs .#{@currentTab}").removeClass "selected"
+      @$(".panel.#{@currentTab}").removeClass "selected"
 
       @currentTab = which
-      $(".tabs .#{which}").addClass "selected"
-      $(".panel.#{which}").addClass "selected"
+      @$(".tabs .#{which}").addClass "selected"
+      @$(".panel.#{which}").addClass "selected"
 
-      $(".panel.#{which} .autofocus").focus()
+      @$(".panel.#{which} .autofocus").focus()
 
   changeTab: (event) ->
     which = $(event.currentTarget).attr "data-panel"

@@ -1,1 +1,1 @@
-<div class="trust"><span class="sure"></span><span class="undecided selected"></span><span class="unsure"></span></div>
+<div class="trust <%= @trustClass %>"><span class="sure"></span><span class="undecided selected"></span><span class="unsure"></span><input type="hidden" value="undecided" /></div>

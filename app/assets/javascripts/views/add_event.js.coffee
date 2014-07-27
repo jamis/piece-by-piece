@@ -57,7 +57,7 @@ class App.Views.AddEvent extends App.Views.Dialog
     date = @$('input.date').val()
     place = @$('input.place').val()
 
-    event = new App.Models.Event type: type, name: name, date: date, place: place, trust: @trust
+    event = new App.Models.Event type: type, name: name, date: date, place: place, trust: @getTrust()
     @collection.add event
 
     @hide()
