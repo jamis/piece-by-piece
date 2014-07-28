@@ -9,21 +9,27 @@ class App.Views.RecordFacts extends App.Views.Dialog
     'click [data-behavior~=add-participant]'      : 'addParticipant'
     'click [data-behavior~=delete-characteristic]': 'deleteCharacteristic'
     'click [data-behavior~=delete-participant]'   : 'deleteParticipant'
+    'click [data-behavior~=delete-persona]'       : 'deletePersona'
+    'click [data-behavior~=delete-event]'         : 'deleteEvent'
+    'click [data-behavior~=delete-group]'         : 'deleteGroup'
 
   initialize: (options) ->
     super(options)
 
     @_personas = new App.Collections.Personas
-    @_personas.bind "add", (persona) => @addPersona persona
-    @_personas.bind "change", (persona) => @changePersona persona
+    @_personas.on "add", (persona) => @addPersona persona
+    @_personas.on "change", (persona) => @changePersona persona
+    @_personas.on "remove", (persona) => @removePersona persona
 
     @_events = new App.Collections.Events
-    @_events.bind "add", (event) => @addEvent event
-    @_events.bind "change", (event) => @changeEvent event
+    @_events.on "add", (event) => @addEvent event
+    @_events.on "change", (event) => @changeEvent event
+    @_events.on "remove", (event) => @changeEvent event
 
     @_groups = new App.Collections.Groups
-    @_groups.bind "add", (group) => @addGroup group
-    @_groups.bind "change", (group) => @changeGroup group
+    @_groups.on "add", (group) => @addGroup group
+    @_groups.on "change", (group) => @changeGroup group
+    @_groups.on "remove", (group) => @changeGroup group
 
   render: ->
     super
@@ -116,6 +122,33 @@ class App.Views.RecordFacts extends App.Views.Dialog
     if confirm("Delete this participant from the #{recordType} \"#{record.get('name')}\"?")
       record.deleteParticipant(cid)
 
+  deletePersona: (evt) ->
+    evt.preventDefault()
+    $container = $(evt.target).closest "[data-persona-cid]"
+    persona_cid = $container.attr "data-persona-cid"
+    persona = @_personas.get persona_cid
+
+    if confirm("Delete \"#{persona.get('label')}\"?")
+      @_personas.remove(persona)
+
+  deleteEvent: (evt) ->
+    evt.preventDefault()
+    $container = $(evt.target).closest "[data-event-cid]"
+    event_cid = $container.attr "data-event-cid"
+    event = @_events.get event_cid
+
+    if confirm("Delete \"#{event.get('name')}\"?")
+      @_events.remove(event)
+
+  deleteGroup: (evt) ->
+    evt.preventDefault()
+    $container = $(evt.target).closest "[data-group-cid]"
+    group_cid = $container.attr "data-group-cid"
+    group = @_groups.get group_cid
+
+    if confirm("Delete \"#{group.get('name')}\"?")
+      @_groups.remove(group)
+
   addPersona: (persona) ->
     characteristics = persona.get('characteristics') ? []
 
@@ -127,6 +160,11 @@ class App.Views.RecordFacts extends App.Views.Dialog
     @redrawPeople()
 
   changePersona: (persona) -> @redrawPeople()
+
+  removePersona: (persona) ->
+    @_events.each (event) -> event.removePersonaAsParticipant(persona, silent: true)
+    @_groups.each (group) -> group.removePersonaAsParticipant(persona, silent: true)
+    @redrawAll()
 
   addEvent: (event) ->
     @lastDate = event.get('date')
@@ -141,6 +179,11 @@ class App.Views.RecordFacts extends App.Views.Dialog
     @redrawGroups()
 
   changeGroup: (group) -> @redrawGroups()
+
+  redrawAll: ->
+    @redrawPeople()
+    @redrawEvents()
+    @redrawGroups()
 
   redrawPeople: -> @redrawCollection "persona", "personas"
   redrawEvents: -> @redrawCollection "event", "events"

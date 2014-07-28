@@ -12,5 +12,8 @@
       <% end %>
     </ol>
   <% end %>
-  <p class="actions"><a href="#" data-behavior="add-fact" data-collection="personas" data-cid="<%= @persona.cid %>">Add another fact</a></p>
+  <p class="actions">
+    <a href="#" data-behavior="add-fact" data-collection="personas" data-cid="<%= @persona.cid %>">Add another fact</a>
+    <a href="#" data-behavior="delete-persona" class="delete-link">Delete</a>
+  </p>
 </li>

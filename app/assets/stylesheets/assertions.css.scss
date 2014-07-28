@@ -147,28 +147,29 @@
               &:hover {
                 text-decoration: underline;
               }
-
-              &.delete-button {
-                display: block;
-                float: right;
-                width: 12px;
-                height: 16px;
-                background-image: url(image-path('trash.png'));
-                text-indent: 0;
-                visibility: hidden;
-                opacity: 0.5;
-
-                &:hover {
-                  opacity: 1.0;
-                }
-              }
             }
 
-            &:hover {
-              a.delete-button {
-                visibility: visible;
-              }
-            }
+          }
+        }
+
+        a.delete-button {
+          display: block;
+          float: right;
+          width: 12px;
+          height: 16px;
+          background-image: url(image-path('trash.png'));
+          text-indent: 0;
+          visibility: hidden;
+          opacity: 0.5;
+
+          &:hover {
+            opacity: 1.0;
+          }
+        }
+
+        *:hover {
+          a.delete-button {
+            visibility: visible;
           }
         }
 
@@ -192,9 +193,15 @@
           font-size: 10pt;
           padding: 3px 8px;
           border-top: 1px solid #bdb;
+          color: #585;
 
           * {
             color: #585;
+          }
+
+          a.delete-link {
+            color: #7a7;
+            float: right;
           }
         }
 

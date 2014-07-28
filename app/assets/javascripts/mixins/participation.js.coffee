@@ -18,3 +18,10 @@ App.Mixins.Participation =
     list = _.without(list, participant)
     @unset "participants", silent: true
     @set participants: list
+
+  removePersonaAsParticipant: (persona, options) ->
+    options ?= {}
+    list = @getParticipants()
+    list = _.reject list, (p) -> p.get("persona").cid == persona.cid
+    @unset "participants", options
+    @set { participants: list }, options

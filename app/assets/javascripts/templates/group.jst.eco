@@ -11,5 +11,8 @@
       </li>
     <% end %>
   </ol>
-  <p class="actions"><a href="#" data-behavior="add-participant" data-collection="groups" data-cid="<%= @group.cid %>">Add participants</a></p>
+  <p class="actions">
+    <a href="#" data-behavior="add-participant" data-collection="groups" data-cid="<%= @group.cid %>">Add participants</a>
+    <a href="#" data-behavior="delete-group" class="delete-link">Delete</a>
+  </p>
 </li>
