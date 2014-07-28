@@ -30,7 +30,6 @@ class App.Views.AddParticipant extends App.Views.Dialog
         trust       = @getTrust tr
         persona     = @personas.get persona_cid
 
-        console.log "persona_cid(#{persona_cid}) persona(#{persona}) role(#{role}) trust(#{trust})"
         participant = new App.Models.Participant
           persona: persona
           role:    role

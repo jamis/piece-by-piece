@@ -1,4 +1,4 @@
-<li class="assertion" data-group-cid="<%= @group.cid %>">
+<li class="assertion" data-record-type='group' data-group-cid="<%= @group.cid %>">
   <h2><%= @group.get 'name' %></h2>
   <ol>
     <li class="<%= @group.get 'trust' %>"> When: <a href=""><%= @group.maybeUnknown 'date' %></a></li>

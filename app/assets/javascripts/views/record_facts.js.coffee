@@ -3,10 +3,12 @@ class App.Views.RecordFacts extends App.Views.Dialog
   className: "dialog large"
 
   events:
-    'click .back a'                           : 'cancel'
-    'click button.add'                        : 'addAssertion'
-    'click [data-behavior~=add-fact]'         : 'addFact'
-    'click [data-behavior~=add-participant]'  : 'addParticipant'
+    'click .back a'                               : 'cancel'
+    'click button.add'                            : 'addAssertion'
+    'click [data-behavior~=add-fact]'             : 'addFact'
+    'click [data-behavior~=add-participant]'      : 'addParticipant'
+    'click [data-behavior~=delete-characteristic]': 'deleteCharacteristic'
+    'click [data-behavior~=delete-participant]'   : 'deleteParticipant'
 
   initialize: (options) ->
     super(options)
@@ -93,6 +95,27 @@ class App.Views.RecordFacts extends App.Views.Dialog
   showBlankSlateOn: (panel) ->
     $(".content > .#{panel}").removeClass "active"
 
+  deleteCharacteristic: (evt) ->
+    evt.preventDefault()
+    cid = $(evt.target).attr "data-item-cid"
+    $container = $(evt.target).closest("[data-persona-cid]")
+    persona_cid = $container.attr "data-persona-cid"
+    persona = @_personas.get persona_cid
+
+    if confirm("Delete this attribute from #{persona.get('label')}?")
+      persona.deleteCharacteristic(cid)
+
+  deleteParticipant: (evt) ->
+    evt.preventDefault()
+    cid = $(evt.target).attr "data-item-cid"
+    $container = $(evt.target).closest("[data-record-type]")
+    recordType = $container.attr "data-record-type"
+    recordCid = $container.attr "data-#{recordType}-cid"
+    record = this["_#{recordType}s"].get recordCid
+
+    if confirm("Delete this participant from the #{recordType} \"#{record.get('name')}\"?")
+      record.deleteParticipant(cid)
+
   addPersona: (persona) ->
     characteristics = persona.get('characteristics') ? []
 
@@ -139,7 +162,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
   # ---- template helper methods ----
 
   characteristicsByDate: (record) ->
-    characteristics = record.get('characteristics') ? []
+    characteristics = record.getCharacteristics()
     _.groupBy characteristics, (c) -> c.get 'date'
 
   characteristicDate: (date) ->

@@ -1,4 +1,4 @@
-<li class="assertion" data-event-id="<%= @event.cid %>">
+<li class="assertion" data-record-type='event' data-event-cid="<%= @event.cid %>">
   <h2><%= @event.get 'name' %></h2>
   <ol>
     <li class="<%= @event.get 'trust' %>">When: <a href=""><%= @event.maybeUnknown 'date' %></a></li>

@@ -11,3 +11,10 @@ App.Mixins.Participation =
     @unset "participants", silent: true
     @set participants: list
     this
+
+  deleteParticipant: (cid) ->
+    list = @getParticipants()
+    participant = _.find list, (p) -> p.cid == cid
+    list = _.without(list, participant)
+    @unset "participants", silent: true
+    @set participants: list
