@@ -147,6 +147,27 @@
               &:hover {
                 text-decoration: underline;
               }
+
+              &.delete-button {
+                display: block;
+                float: right;
+                width: 12px;
+                height: 16px;
+                background-image: url(image-path('trash.png'));
+                text-indent: 0;
+                visibility: hidden;
+                opacity: 0.5;
+
+                &:hover {
+                  opacity: 1.0;
+                }
+              }
+            }
+
+            &:hover {
+              a.delete-button {
+                visibility: visible;
+              }
             }
           }
         }
