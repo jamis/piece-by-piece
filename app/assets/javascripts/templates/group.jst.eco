@@ -7,7 +7,7 @@
       <li class="<%= participant.get 'trust' %>">
         <a href="#" data-item-cid="<%= participant.cid %>" data-behavior="delete-participant" class="delete-button"></a>
         <%= participant.get 'role' %>:
-        <a href="#"><%= participant.get('persona').get('label') %></a>
+        <%= participant.get('persona').get('label') %>
       </li>
     <% end %>
   </ol>
