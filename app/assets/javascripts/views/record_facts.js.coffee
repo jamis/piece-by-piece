@@ -109,7 +109,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
     persona = @_personas.get persona_cid
 
     if confirm("Delete this attribute from #{persona.get('label')}?")
-      persona.deleteCharacteristic(cid)
+      characteristic = persona.get('characteristics').get(cid)
+      persona.get('characteristics').remove(characteristic)
 
   deleteParticipant: (evt) ->
     evt.preventDefault()
@@ -150,10 +151,10 @@ class App.Views.RecordFacts extends App.Views.Dialog
       @_groups.remove(group)
 
   addPersona: (persona) ->
-    characteristics = persona.get('characteristics') ? []
+    characteristics = persona.get('characteristics')
 
     if characteristics.length > 0
-      characteristic = characteristics[characteristics.length-1]
+      characteristic = characteristics.at(characteristics.length-1)
       @lastDate = characteristic.get('date')
       @lastPlace = characteristic.get('place')
 
@@ -205,8 +206,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
   # ---- template helper methods ----
 
   characteristicsByDate: (record) ->
-    characteristics = record.getCharacteristics()
-    _.groupBy characteristics, (c) -> c.get 'date'
+    characteristics = record.get('characteristics')
+    characteristics.groupBy (c) -> c.get 'date'
 
   characteristicDate: (date) ->
     date

@@ -41,7 +41,7 @@ class App.Views.AddPerson extends App.Views.Dialog
     characteristic.parts = @name.parts
 
     persona = new App.Models.Persona label: @name.original
-    persona.addCharacteristic characteristic
+    persona.get('characteristics').add characteristic
     @collection.add persona
     @hide()
 
