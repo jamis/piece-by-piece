@@ -8,21 +8,29 @@ class App.Views.AddCharacteristic extends App.Views.Dialog
     'menu:click'       : 'menuCommand'
     'click .trust'     : 'changeTrust'
     'change input.name': 'parseName'
-    'change select'    : 'changeCharacteristicType'
+    'change select'    : 'onChangeCharacteristicType'
     'keypress'         : 'onKeyPress'
 
   initialize: (options) ->
     super(options)
 
     @persona = options.persona
-    @date = options.date
-    @place = options.place
+    @characteristic = options.characteristic
+    @initialType = @characteristic?.get?('type')
+    @initialValue = @characteristic?.compositeValue?() ? ""
+    @initialDate = @characteristic?.get?('date') ? options.date
+    @initialPlace = @characteristic?.get?('place') ? options.place
+    @initialTrust = @characteristic?.get?('trust')
+    @initialParts = @characteristic?.get?('parts')
 
   render: ->
     super
     $(@el).addClass "add-characteristic data-entry"
-    @$('input.place').val @place
-    @$('input.date').val @date
+    @$('input.place').val @initialPlace
+    @$('input.date').val @initialDate
+    @$('input.value').val @initialValue
+    @setTrust @initialTrust
+    @changeCharacteristicType @initialType if @initialType?
     this
 
   onEnterPressed: (event) -> @next(event)
@@ -40,13 +48,20 @@ class App.Views.AddCharacteristic extends App.Views.Dialog
       @$('.value').focus()
       return
 
-    characteristic = new App.Models.Characteristic type: @type, place: @$('input.place').val(), date: @$('input.date').val(), trust: @getTrust()
-    characteristic.parts = if @name? then @name.parts else [ content: @$('.value').val() ]
-    @persona.get('characteristics').add characteristic
+    place = @$('input.place').val()
+    date  = @$('input.date').val()
+    trust = @getTrust()
+    parts = if @name? then @name.parts else [ content: @$('.value').val() ]
+
+    if @persona?
+      characteristic = new App.Models.Characteristic type: @type, place: place, date: date, trust: trust, parts: parts
+      @persona.get('characteristics').add characteristic
+    else if @characteristic?
+      @characteristic.set type: @type, place: place, date: date, trust: trust, parts: parts
 
     @hide()
 
-  changeCharacteristicType: (event) ->
+  onChangeCharacteristicType: (event) ->
     select = event.target
     selection = $(select).val()
 
@@ -56,15 +71,23 @@ class App.Views.AddCharacteristic extends App.Views.Dialog
       select.selectedIndex = 0
       alert "Someday you'll be able to add another characteristic type"
     else
-      if selection is "Name"
-        @$('input.value').addClass "name"
-      else
-        @$('input.value').removeClass "name"
-        @$('.parts-row').removeClass "parsing parsed"
-        @name = null
+      @changeCharacteristicType selection
 
-      @type = selection
-      @$('input.value').focus()
+  changeCharacteristicType: (type) ->
+    @$('select').val type
+
+    if type is "Name"
+      @$('input.value').addClass "name"
+      @parseName()
+
+    else
+      @$('input.value').removeClass "name"
+      @$('.parts-row').removeClass "parsing parsed"
+      @$('.parts-row').hide()
+      @name = null
+
+    @type = type
+    @$('input.value').focus()
 
 App.include App.Views.AddCharacteristic, App.Mixins.NameParsing
 App.include App.Views.AddCharacteristic, App.Mixins.Trust

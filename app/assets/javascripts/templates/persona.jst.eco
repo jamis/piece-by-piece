@@ -7,7 +7,7 @@
         <li class="<%= item.get 'trust' %>">
           <a href="#" data-item-cid="<%= item.cid %>" data-behavior="delete-characteristic" class="delete-button"></a>
           <%= @characteristicLabel item %>:
-          <a href="#" data-item-cid="<%= item.cid %>"><%= item.compositeValue() %></a>
+          <a href="#" data-behavior="edit-characteristic" data-item-cid="<%= item.cid %>"><%= item.compositeValue() %></a>
         </li>
       <% end %>
     </ol>

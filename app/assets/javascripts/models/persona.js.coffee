@@ -3,6 +3,7 @@ class App.Models.Persona extends Backbone.Model
     characteristics = new App.Collections.Characteristics
 
     characteristics.on "add", => @trigger("change")
+    characteristics.on "change", => @trigger("change")
     characteristics.on "remove", => @trigger("change")
 
     @set 'characteristics', characteristics

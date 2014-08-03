@@ -12,6 +12,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
     'click [data-behavior~=delete-persona]'       : 'deletePersona'
     'click [data-behavior~=delete-event]'         : 'deleteEvent'
     'click [data-behavior~=delete-group]'         : 'deleteGroup'
+    'click [data-behavior~=edit-characteristic]'  : 'editCharacteristic'
 
   initialize: (options) ->
     super(options)
@@ -105,8 +106,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
     evt.preventDefault()
     cid = $(evt.target).attr "data-item-cid"
     $container = $(evt.target).closest("[data-persona-cid]")
-    persona_cid = $container.attr "data-persona-cid"
-    persona = @_personas.get persona_cid
+    personaCid = $container.attr "data-persona-cid"
+    persona = @_personas.get personaCid
 
     if confirm("Delete this attribute from #{persona.get('label')}?")
       characteristic = persona.get('characteristics').get(cid)
@@ -127,8 +128,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
   deletePersona: (evt) ->
     evt.preventDefault()
     $container = $(evt.target).closest "[data-persona-cid]"
-    persona_cid = $container.attr "data-persona-cid"
-    persona = @_personas.get persona_cid
+    personaCid = $container.attr "data-persona-cid"
+    persona = @_personas.get personaCid
 
     if confirm("Delete \"#{persona.get('label')}\"?")
       @_personas.remove(persona)
@@ -136,8 +137,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
   deleteEvent: (evt) ->
     evt.preventDefault()
     $container = $(evt.target).closest "[data-event-cid]"
-    event_cid = $container.attr "data-event-cid"
-    event = @_events.get event_cid
+    eventCid = $container.attr "data-event-cid"
+    event = @_events.get eventCid
 
     if confirm("Delete \"#{event.get('name')}\"?")
       @_events.remove(event)
@@ -145,11 +146,26 @@ class App.Views.RecordFacts extends App.Views.Dialog
   deleteGroup: (evt) ->
     evt.preventDefault()
     $container = $(evt.target).closest "[data-group-cid]"
-    group_cid = $container.attr "data-group-cid"
-    group = @_groups.get group_cid
+    groupCid = $container.attr "data-group-cid"
+    group = @_groups.get groupCid
 
     if confirm("Delete \"#{group.get('name')}\"?")
       @_groups.remove(group)
+
+  editCharacteristic: (evt) ->
+    evt.preventDefault()
+
+    $item = $(evt.target)
+    itemCid = $item.attr "data-item-cid"
+    $container = $(evt.target).closest "[data-persona-cid]"
+    personaCid = $container.attr "data-persona-cid"
+    persona = @_personas.get personaCid
+
+    view = new App.Views.AddCharacteristic
+      parent: this
+      characteristic: persona.get('characteristics').get(itemCid)
+
+    view.render().show()
 
   addPersona: (persona) ->
     characteristics = persona.get('characteristics')

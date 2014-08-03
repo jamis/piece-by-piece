@@ -1,13 +1,13 @@
 App.Mixins.NameParsing =
   parseName: ->
-    $('.parts-row').removeClass "parsed"
+    @$('.parts-row').removeClass "parsed"
 
-    text = $('input.name').val()
+    text = @$('input.name').val()
     return unless /\S/.test(text)
     return if text is @name?.original_text
 
-    $('.parts').empty()
-    $('.parts-row').addClass "parsing"
+    @$('.parts').empty()
+    @$('.parts-row').addClass "parsing"
 
     App.Models.Name.parse text, (success, name) =>
       if success
@@ -17,13 +17,13 @@ App.Mixins.NameParsing =
 
   parsedName: (name) ->
     @name = name
-    $('.parts-row').removeClass("parsing").addClass "parsed"
-    $('input.name')[0].value = @name.original
+    @$('.parts-row').removeClass("parsing").addClass "parsed"
+    @$('input.name')[0].value = @name.original
     @renderName()
 
   renderName: ->
-    $('.parts').parents('tr').show()
-    $('.parts').empty()
+    @$('.parts').parents('tr').show()
+    @$('.parts').empty()
 
     _.each @name.parts, (part, index) ->
       element = $(document.createElement "div")
@@ -35,10 +35,10 @@ App.Mixins.NameParsing =
         # convert it to a string, first
         element.data "data-name-part", index+""
 
-      $('.parts').append element
+      @$('.parts').append element
 
   failedName: (name) ->
-    $('.parts-row').removeClass "parsing"
+    @$('.parts-row').removeClass "parsing"
     @name = null
     alert "The name couldn't be parsed (server said \"#{name.error}\").\nPlease wait a minute and try again."
 
