@@ -11,15 +11,22 @@ class App.Views.AddGroup extends App.Views.Dialog
   initialize: (options) ->
     super(options)
 
-    @date = options.date
-    @place = options.place
+    @group = options.group
+    @initialDate  = @group?.get?('date') ? options.date
+    @initialPlace = @group?.get?('place') ? options.place
+    @initialType  = @group?.get?('type')
+    @initialName  = @group?.get?('name')
+    @initialTrust = @group?.get?('trust') ? "undecided"
 
   render: ->
     super
     $(@el).addClass "add-group data-entry"
 
-    @$('input.place').val @place
-    @$('input.date').val @date
+    @$('select.type').val @initialType
+    @$('input.name').val @initialName
+    @$('input.place').val @initialPlace
+    @$('input.date').val @initialDate
+    @setTrust @initialTrust
     this
 
   chooseType: (event) ->
@@ -57,8 +64,11 @@ class App.Views.AddGroup extends App.Views.Dialog
     date = @$('input.date').val()
     place = @$('input.place').val()
 
-    group = new App.Models.Group type: type, name: name, date: date, place: place, trust: @getTrust()
-    @collection.add group
+    if @group
+      @group.set type: type, name: name, date: date, place: place, trust: @getTrust()
+    else
+      group = new App.Models.Group type: type, name: name, date: date, place: place, trust: @getTrust()
+      @collection.add group
 
     @hide()
 

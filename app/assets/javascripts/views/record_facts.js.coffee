@@ -14,6 +14,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
     'click [data-behavior~=delete-group]'         : 'deleteGroup'
     'click [data-behavior~=edit-characteristic]'  : 'editCharacteristic'
     'click [data-behavior~=edit-event]'           : 'editEvent'
+    'click [data-behavior~=edit-group]'           : 'editGroup'
 
   initialize: (options) ->
     super(options)
@@ -175,6 +176,15 @@ class App.Views.RecordFacts extends App.Views.Dialog
     event = @_events.get eventCid
 
     dialog = new App.Views.AddEvent event: event
+    dialog.render().show()
+
+  editGroup: (evt) ->
+    evt.preventDefault()
+    $container = $(evt.target).closest "[data-group-cid]"
+    groupCid = $container.attr "data-group-cid"
+    group = @_groups.get groupCid
+
+    dialog = new App.Views.AddGroup group: group
     dialog.render().show()
 
   addPersona: (persona) ->
