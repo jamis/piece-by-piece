@@ -1,27 +1,13 @@
 App.Mixins.Participation =
-  getParticipants: ->
-    @get("participants") ? []
+  willExtend: (klass) ->
+    klass._initialize_without_participation = klass.initialize
 
-  addParticipant: (participant) ->
-    @addParticipants [participant]
+  initialize: ->
+    @_initialize_without_participation?()
 
-  addParticipants: (participants) ->
-    list = @getParticipants()
-    list = list.concat(participants)
-    @unset "participants", silent: true
-    @set participants: list
-    this
+    participants = new App.Collections.Participants
 
-  deleteParticipant: (cid) ->
-    list = @getParticipants()
-    participant = _.find list, (p) -> p.cid == cid
-    list = _.without(list, participant)
-    @unset "participants", silent: true
-    @set participants: list
+    participants.on "add", => @trigger "change"
+    participants.on "remove", => @trigger "change"
 
-  removePersonaAsParticipant: (persona, options) ->
-    options ?= {}
-    list = @getParticipants()
-    list = _.reject list, (p) -> p.get("persona").cid == persona.cid
-    @unset "participants", options
-    @set { participants: list }, options
+    @set 'participants', participants

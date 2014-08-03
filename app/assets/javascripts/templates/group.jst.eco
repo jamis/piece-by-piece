@@ -3,7 +3,7 @@
   <ol>
     <li class="<%= @group.get 'trust' %>"> When: <a href=""><%= @group.maybeUnknown 'date' %></a></li>
     <li class="<%= @group.get 'trust' %>"> Where: <a href=""><%= @group.maybeUnknown 'place' %></a></li>
-    <% for participant in @group.getParticipants(): %>
+    <% @group.get('participants').each (participant) ->: %>
       <li class="<%= participant.get 'trust' %>">
         <a href="#" data-item-cid="<%= participant.cid %>" data-behavior="delete-participant" class="delete-button"></a>
         <%= participant.get 'role' %>:

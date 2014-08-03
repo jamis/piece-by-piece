@@ -121,7 +121,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
     record = this["_#{recordType}s"].get recordCid
 
     if confirm("Delete this participant from the #{recordType} \"#{record.get('name')}\"?")
-      record.deleteParticipant(cid)
+      participant = record.get('participants').get cid
+      record.get('participants').remove(participant)
 
   deletePersona: (evt) ->
     evt.preventDefault()
@@ -163,8 +164,12 @@ class App.Views.RecordFacts extends App.Views.Dialog
   changePersona: (persona) -> @redrawPeople()
 
   removePersona: (persona) ->
-    @_events.each (event) -> event.removePersonaAsParticipant(persona, silent: true)
-    @_groups.each (group) -> group.removePersonaAsParticipant(persona, silent: true)
+    @_events.each (event) ->
+      participants = event.get('participants').withPersona persona
+      event.get('participants').remove participants, silent: true
+    @_groups.each (group) ->
+      participants = group.get('participants').withPersona persona
+      group.get('participants').remove participants, silent: true
     @redrawAll()
 
   addEvent: (event) ->

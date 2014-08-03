@@ -36,7 +36,7 @@ class App.Views.AddParticipant extends App.Views.Dialog
           trust:   trust
         participants.push participant
 
-    @klass.addParticipants participants
+    @klass.get('participants').add participants
     @hide()
 
   addMoreParticipants: (event) ->
