@@ -168,7 +168,7 @@
         }
 
         *:hover {
-          a.delete-button {
+          > a.delete-button {
             visibility: visible;
           }
         }
