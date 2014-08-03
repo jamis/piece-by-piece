@@ -13,6 +13,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
     'click [data-behavior~=delete-event]'         : 'deleteEvent'
     'click [data-behavior~=delete-group]'         : 'deleteGroup'
     'click [data-behavior~=edit-characteristic]'  : 'editCharacteristic'
+    'click [data-behavior~=edit-event]'           : 'editEvent'
 
   initialize: (options) ->
     super(options)
@@ -166,6 +167,15 @@ class App.Views.RecordFacts extends App.Views.Dialog
       characteristic: persona.get('characteristics').get(itemCid)
 
     view.render().show()
+
+  editEvent: (evt) ->
+    evt.preventDefault()
+    $container = $(evt.target).closest "[data-event-cid]"
+    eventCid = $container.attr "data-event-cid"
+    event = @_events.get eventCid
+
+    dialog = new App.Views.AddEvent event: event
+    dialog.render().show()
 
   addPersona: (persona) ->
     characteristics = persona.get('characteristics')

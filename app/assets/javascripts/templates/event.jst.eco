@@ -1,8 +1,8 @@
 <li class="assertion" data-record-type='event' data-event-cid="<%= @event.cid %>">
   <h2><%= @event.get 'name' %></h2>
   <ol>
-    <li class="<%= @event.get 'trust' %>"> When: <a href=""><%= @event.maybeUnknown 'date' %></a></li>
-    <li class="<%= @event.get 'trust' %>"> Where: <a href=""><%= @event.maybeUnknown 'place' %></a></li>
+    <li class="<%= @event.get 'trust' %>"> When: <a href="#" data-behavior="edit-event"><%= @event.maybeUnknown 'date' %></a></li>
+    <li class="<%= @event.get 'trust' %>"> Where: <a href="#" data-behavior="edit-event"><%= @event.maybeUnknown 'place' %></a></li>
     <% @event.get('participants').each (participant) ->: %>
       <li class="<%= participant.get 'trust' %>">
         <a href="#" data-item-cid="<%= participant.cid %>" data-behavior="delete-participant" class="delete-button"></a>

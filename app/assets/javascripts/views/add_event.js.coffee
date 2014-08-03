@@ -11,15 +11,22 @@ class App.Views.AddEvent extends App.Views.Dialog
   initialize: (options) ->
     super(options)
 
-    @date = options.date
-    @place = options.place
+    @event = options.event
+    @initialDate  = @event?.get?('date') ? options.date
+    @initialPlace = @event?.get?('place') ? options.place
+    @initialType  = @event?.get?('type')
+    @initialName  = @event?.get?('name')
+    @initialTrust = @event?.get?('trust') ? "undecided"
 
   render: ->
     super
     $(@el).addClass "add-event data-entry"
 
-    @$('input.place').val @place
-    @$('input.date').val @date
+    @$('select.type').val @initialType
+    @$('input.name').val @initialName
+    @$('input.place').val @initialPlace
+    @$('input.date').val @initialDate
+    @setTrust @initialTrust
     this
 
   chooseType: (event) ->
@@ -57,8 +64,11 @@ class App.Views.AddEvent extends App.Views.Dialog
     date = @$('input.date').val()
     place = @$('input.place').val()
 
-    event = new App.Models.Event type: type, name: name, date: date, place: place, trust: @getTrust()
-    @collection.add event
+    if @event
+      @event.set type: type, name: name, date: date, place: place, trust: @getTrust()
+    else
+      event = new App.Models.Event type: type, name: name, date: date, place: place, trust: @getTrust()
+      @collection.add event
 
     @hide()
 
