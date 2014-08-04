@@ -3,11 +3,11 @@ App.Mixins.Searching =
     klass._initialize_without_searching = klass.initialize
     klass._hide_without_searching = klass.hide
 
-  initialize: ->
+  initialize: (options) ->
     @text = ""
     @prepareCollection()
     @collection.fetch success: ((c, r) => @fetchSuccess(c, r)), error: ((c, r) => @fetchError(c, r))
-    @_initialize_without_searching?()
+    @_initialize_without_searching?(options)
 
   hide: ->
     clearTimeout @timer if @timer?

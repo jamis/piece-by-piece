@@ -1,0 +1,19 @@
+<h1>Where did you find this information?</h1>
+<div class="content">
+  <div class="search_box">
+    <label for="repo_search">
+      Starting typing a name to search for or add a repository.
+      <a href="#" class="help">Learn about repositories</a>.
+    </label>
+    <div class="dialog help arrow center closed">
+    </div>
+    <input class="autofocus" id="repo_search" type="text" value="" />
+    <ol class="matches">
+    </ol>
+  </div>
+  <div class="actions">
+    <span class="next"><a href="#">add a new repository</a></span>
+    <span class="back">&larr; <a href="#">cancel</a></span>
+  </div>
+  <div class="clear"></div>
+</div>

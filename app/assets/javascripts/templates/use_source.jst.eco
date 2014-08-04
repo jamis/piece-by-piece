@@ -1,0 +1,44 @@
+<h1>You selected this repository:</h1>
+<div class="content">
+  <div class="selection">
+    <%= @controller.repository.get 'name' %>
+  </div>
+</div>
+
+<h1>And this source:</h1>
+<div class="content source">
+  <div class="selection">
+    <%= @controller.source.get 'name' %>
+  </div>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next pending">
+      <a data-behavior="add-under" href="#">add a new source under this one</a>, or<br />
+      <a data-behavior="use-directly" href="#">use this one directly</a> &rarr;
+    </span>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<h1 class="info">Now, tell us a bit about it:</h1>
+<div class="content info">
+  <div class="options">
+    <a class="option" data-behavior="upload" href="#">
+      <p>click here to</p>
+      <h1>Upload</h1>
+      <p>an image, video clip, audio recording, transcription, or other digital represention of this source</p>
+    </a>
+    <div class="disjunction">or</div>
+    <a class="option" data-behavior="write" href="#">
+      <p>click here to</p>
+      <h1>Write</h1>
+      <p>a summary, report, quotation or other textual description of this source</p>
+    </a>
+  </div>
+  <div class="clear"></div>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><a data-behavior="next" href="#">next</a> &rarr;</span>
+  </div>
+  <div class="clear"></div>
+</div>

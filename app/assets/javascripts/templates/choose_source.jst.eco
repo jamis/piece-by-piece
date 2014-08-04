@@ -1,0 +1,26 @@
+<h1>You selected this repository:</h1>
+<div class="content">
+  <div class="selection">
+    <%= @controller.repository.get 'name' %>
+  </div>
+</div>
+
+<h1>Next step: what record had the information?</h1>
+<div class="content">
+  <div class="search_box">
+    <label for="source_search">
+      Starting typing a name to search for or add a source record.
+      <a href="#" class="help">Learn about sources</a>.
+    </label>
+    <div class="dialog help arrow center closed">
+    </div>
+    <input class="autofocus" id="source_search" type="text" value="" />
+    <ol class="matches">
+    </ol>
+  </div>
+  <div class="actions">
+    <span class="next"><a href="#">add a new source record</a></span>
+    <span class="back">&larr; <a href="#">cancel</a></span>
+  </div>
+  <div class="clear"></div>
+</div>

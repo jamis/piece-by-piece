@@ -1,0 +1,28 @@
+us_census_1880:
+  name: "1880 US Federal Census"
+  subject_place: "USA"
+  subject_date: "1880"
+
+us_census_1880_utah:
+  parent: us_census_1880
+  name: "1880 US Federal Census, Utah Territory"
+  subject_place: "Utah, USA"
+  subject_date: "1880"
+
+us_census_1880_utah_slc:
+  parent: us_census_1880_utah
+  name: "1880 US Federal Census, Utah Territory, Salt Lake County"
+  subject_place: "Salt Lake, Utah, USA"
+  subject_date: "1880"
+
+us_census_1880_utah_slc_ward_19:
+  parent: us_census_1880_utah_slc
+  name: "1880 US Federal Census, Utah Territory, Salt Lake County, Ward 19"
+  subject_place: "Salt Lake City, Salt Lake, Utah, USA"
+  subject_date: "June 1880"
+
+us_census_1880_utah_slc_ward_19_pg5:
+  parent: us_census_1880_utah_slc_ward_19
+  name: "1880 US Federal Census, Utah Territory, Salt Lake County, Ward 19, Page 5"
+  subject_place: "Salt Lake City, Salt Lake, Utah, USA"
+  subject_date: "7 June 1880"

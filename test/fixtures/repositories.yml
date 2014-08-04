@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+lane_county_clerk:
+  name: "Lane County Clerk, Deeds and Records"
+  address: |
+    125 E 8th Ave
+    Eugene, OR  97401
+  website: "http://www.lanecounty.org/Departments/MS/CountyClerk/Pages/default.aspx"
+  email: "Recording.Customer@co.lane.or.us"
+  phone: "541-682-3654"
+  comments: |
+    Never actually been here, but I'm sure it's the very first place I
+    would go if I knew I had ancestors from Lane County!
+
+frederick_parkinson:
+  name: "Frederick Parkinson"
+  address: |
+    714 W Pennsylvania Ave
+    Somewhereville, CA  91234
+  website: ~
+  email: "frederick.parkinson@example.com"
+  phone: "123-456-7890"
+  comments: |
+    An imaginary friend that has loads of information about my mother's side
+    of the family.

@@ -1,0 +1,38 @@
+<h1>Adding a new source from:</h1>
+<div class="content">
+  <div class="selection">
+    <%= @controller.repository.get 'name' %>
+  </div>
+<% if @under?: %>
+</div>
+<h1>Under this source:</h1>
+<div class="content">
+  <div class="selection">
+    <%= @under.get 'name' %>
+  </div>
+<% end %>
+
+  <table class="new_source">
+    <tr>
+      <th><label for="source_name">Name:</label></th>
+      <td><input type="text" class="autofocus" id="source_name" value="<%= @name ? '' %>" /></td>
+    </tr>
+    <tr>
+      <th><label for="source_subject_place">Subject place:</label></th>
+      <td><input type="text" id="source_subject_place" value="" /></td>
+    </tr>
+    <tr>
+      <th><label for="source_subject_date">Subject date:</label></th>
+      <td><input type="text" id="source_subject_date" value="" /></td>
+    </tr>
+    <tr>
+      <th><label for="source_comments">Comments:</label></th>
+      <td><textarea id="source_comments" cols="4"></textarea></td>
+    </tr>
+  </table>
+  <div class="actions">
+    <span class="back">&larr; <a href="#" class="abort">cancel</a></span>
+    <span class="next"><button type="button">Use this source</button></span>
+  </div>
+  <div class="clear"></div>
+</div>

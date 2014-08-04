@@ -1,0 +1,18 @@
+author:
+  code: "author"
+locator:
+  code: "locator"
+annotation:
+  code: "annotation"
+subject:
+  code: "subject"
+title:
+  code: "title"
+publication:
+  code: "publication"
+publisher:
+  code: "publisher"
+pubplace:
+  code: "pubplace"
+pubdate:
+  code: "pubdate"

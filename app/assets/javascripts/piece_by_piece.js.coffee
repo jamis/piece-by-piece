@@ -21,5 +21,5 @@ $(document).ready ->
 
   $(document).on "click", "a[data-behavior~=start-analysis]", (evt) ->
     evt.preventDefault()
-    dlg = new App.Views.RecordFacts().render()
-    dlg.show()
+    controller = new App.Controllers.NewInformation
+    controller.chooseRepository()
