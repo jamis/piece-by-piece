@@ -7,3 +7,8 @@ class App.Models.Persona extends Backbone.Model
     characteristics.on "remove", => @trigger("change")
 
     @set 'characteristics', characteristics
+
+  toJSON: (options) ->
+    json = super(options)
+    json.cid = @cid
+    return json

@@ -28,10 +28,9 @@ class App.Views.AddParticipant extends App.Views.Dialog
 
       if persona_cid != "-" and role != "-"
         trust       = @getTrust tr
-        persona     = @personas.get persona_cid
 
         participant = new App.Models.Participant
-          persona: persona
+          persona: persona_cid
           role:    role
           trust:   trust
         participants.push participant

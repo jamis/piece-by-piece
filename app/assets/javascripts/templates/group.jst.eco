@@ -3,11 +3,11 @@
   <ol>
     <li class="<%= @group.get 'trust' %>"> When: <a href="#" data-behavior="edit-group"><%= @group.maybeUnknown 'date' %></a></li>
     <li class="<%= @group.get 'trust' %>"> Where: <a href="#" data-behavior="edit-group"><%= @group.maybeUnknown 'place' %></a></li>
-    <% @group.get('participants').each (participant) ->: %>
+    <% @group.get('participants').each (participant) =>: %>
       <li class="<%= participant.get 'trust' %>">
         <a href="#" data-item-cid="<%= participant.cid %>" data-behavior="delete-participant" class="delete-button"></a>
         <%= participant.get 'role' %>:
-        <%= participant.get('persona').get('label') %>
+        <%= @personaLabel(participant.get 'persona') %>
       </li>
     <% end %>
   </ol>

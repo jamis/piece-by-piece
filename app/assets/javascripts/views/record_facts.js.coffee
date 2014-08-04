@@ -5,6 +5,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
   events:
     'click .back a'                               : 'cancel'
     'click button.add'                            : 'addAssertion'
+    'click [data-behavior~=next]'                 : 'saveAssertions'
     'click [data-behavior~=add-fact]'             : 'addFact'
     'click [data-behavior~=add-participant]'      : 'addParticipant'
     'click [data-behavior~=delete-characteristic]': 'deleteCharacteristic'
@@ -39,9 +40,16 @@ class App.Views.RecordFacts extends App.Views.Dialog
     $(@el).addClass "assertions"
     this
 
-  addAssertion: (event) ->
-    event.preventDefault()
-    how = $(event.currentTarget).attr "data-behavior"
+  saveAssertions: (evt) ->
+    evt.preventDefault()
+
+    console.log JSON.stringify(@_personas.toJSON())
+    console.log JSON.stringify(@_events.toJSON())
+    console.log JSON.stringify(@_groups.toJSON())
+
+  addAssertion: (evt) ->
+    evt.preventDefault()
+    how = $(evt.currentTarget).attr "data-behavior"
     @openDialog how
 
   addFact: (event) ->
@@ -258,3 +266,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
     switch type
       when "name" then "Name"
       else type
+
+  personaLabel: (cid) ->
+    persona = @_personas.get(cid)
+    persona.get('label')
