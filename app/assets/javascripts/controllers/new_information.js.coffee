@@ -24,6 +24,21 @@ class App.Controllers.NewInformation
   recordFacts: ->
     @updateView App.Views.RecordFacts
 
+  saveFacts: (personas, events, groups) ->
+    @personas = personas
+    @events   = events
+    @groups   = groups
+
+    payload =
+      repository: @repository
+      source:     @source
+      personas:   @personas
+      events:     @events
+      groups:     @groups
+
+    json = JSON.stringify(payload)
+    console.log json
+
   updateView: (nextView, options={}) ->
     options = _.extend(options, controller: this)
 

@@ -20,6 +20,8 @@ class App.Views.RecordFacts extends App.Views.Dialog
   initialize: (options) ->
     super(options)
 
+    @controller = options.controller
+
     @_personas = new App.Collections.Personas
     @_personas.on "add", (persona) => @addPersona persona
     @_personas.on "change", (persona) => @changePersona persona
@@ -42,10 +44,7 @@ class App.Views.RecordFacts extends App.Views.Dialog
 
   saveAssertions: (evt) ->
     evt.preventDefault()
-
-    console.log JSON.stringify(@_personas.toJSON())
-    console.log JSON.stringify(@_events.toJSON())
-    console.log JSON.stringify(@_groups.toJSON())
+    @controller.saveFacts @_personas, @_events, @_groups
 
   addAssertion: (evt) ->
     evt.preventDefault()

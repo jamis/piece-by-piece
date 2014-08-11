@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140804035502) do
   add_index "repositories", ["name"], name: "index_repositories_on_name", unique: true
 
   create_table "sources", force: true do |t|
-    t.string   "name"
+    t.string   "name",          null: false
     t.integer  "parent_id"
     t.string   "subject_place"
     t.string   "subject_date"

@@ -1,7 +1,7 @@
 class CreateSources < ActiveRecord::Migration
   def change
     create_table :sources do |t|
-      t.string  :name
+      t.string  :name, null: false
       t.integer :parent_id
       t.string  :subject_place
       t.string  :subject_date
